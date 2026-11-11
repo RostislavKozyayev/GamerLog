@@ -4,13 +4,12 @@ import GamesSlider from "../components/GamesSlider.jsx";
 export default function Home({ gamesData }) {
 
     // Текущие избранные 5 игр для главного слайдера
-    const currentFeaturedGamesImgUrls = [
-        "https://www.cgmagonline.com/wp-content/uploads/2026/06/splatoon-raiders-hands-on-preview-chaotic-gameplay-a-fresh-location-and-friendly-3534.jpg",
-        "https://images.squarespace-cdn.com/content/v1/55ef0e29e4b099e22cdc9eea/e9179722-5e0f-4844-91a2-50b01aac14bd/Schr%C3%B6dinger%27s+Call.jpg",
-        "https://static0.hardcoregamerimages.com/wordpress/wp-content/uploads/2026/05/mina-hollower-feature.jpg",
-        "https://images.stopgame.ru/news/2026/04/29/jjXK8I45.jpg",
-        "https://cdn.3dnews.ru/assets/external/illustrations/2026/04/08/1139665/2.jpg"
-    ];
+    const coverFiles = import.meta.glob('../assets/slides/*', { eager: true, import: 'default' });
+
+    const getSlide = (id) => {
+        const match = Object.keys(coverFiles).find((path) => path.includes(`/${id}.`));
+        return match ? coverFiles[match] : '';
+    };
 
     const currentFeaturedGamesId = [
         'splatoon-raiders',
@@ -19,11 +18,12 @@ export default function Home({ gamesData }) {
         'phonopolis',
         'forza-horizon-6'
     ];
-    const currentFeaturedGames = [];
 
-    for (const gameId of currentFeaturedGamesId) {
-        currentFeaturedGames.push(gamesData.find(game => game.id === gameId));
-    }
+    const currentFeaturedGamesImgUrls = currentFeaturedGamesId.map(id => getSlide(id));
+
+    const currentFeaturedGames = currentFeaturedGamesId
+        .map(gameId => gamesData.find(game => game.id === gameId))
+        .filter(Boolean);
 
 
     // Дата для фильтра игр в слайдерах

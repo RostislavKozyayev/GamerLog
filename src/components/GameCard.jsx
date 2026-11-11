@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
 
 export default function GameCard({ game }) {
+
+    const getCover = (fileName) => {
+        return new URL(`../assets/covers/${fileName}`, import.meta.url).href;
+    };
     return (
         <article className="card user-select-none">
             <Link to={`/games/${game.id}`}>
                 <div className="image-container">
-                    <img src={game?.imageUrl} alt={game?.title} width="70" />
+                    <img src={getCover(game?.imageUrl)} alt={game?.title} width="70" />
                     <div className="shadow-overlay"></div>
 
                     {typeof game?.metacriticScore === "number" && (
