@@ -19,9 +19,12 @@ export default function GamePage({ gamesData }) {
     const currentYearDate = now.toISOString().split('T')[0];
     const releaseStatus = currentYearDate >= game.releaseDate;
 
+    const getCover = (fileName) => {
+        return new URL(`../assets/covers/${fileName}`, import.meta.url).href;
+    };
     return (
         <div className="gamepage-container">
-            <img src={game?.imageUrl} alt={game?.title} />
+            <img src={getCover(game?.imageUrl)} alt={game?.title} />
 
             <div className="gameinfo-container">
                 <h3 className="game-title">{game?.title}</h3>
