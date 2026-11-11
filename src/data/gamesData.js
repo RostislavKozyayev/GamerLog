@@ -257,7 +257,7 @@ export const gamesData = [
         description: 'Начало совершенно новой эпической трилогии во вселенной Ведьмака, создаваемой на передовом движке Unreal Engine 5. Игра перевернет привычное представление о темном фэнтези и представит новую ведьмачью школу с уникальным главным героем.',
         genres: ['RPG', 'Action', 'Open World', 'Dark Fantasy'],
         metacriticScore: null,
-        imageUrl: 'https://cdn.wccftech.com/wp-content/uploads/2023/11/new-witcher-4-witcher-polaris.jpg'
+        imageUrl: 'witcher-4-polaris'
     },
     {
         id: 'forza-horizon-6',
