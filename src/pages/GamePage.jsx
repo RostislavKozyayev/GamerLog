@@ -1,6 +1,7 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import GameStatusSelector from '../components/GameStatusSelector';
+import { getCover } from '../utils/getCover';
 
 export default function GamePage({ gamesData }) {
     const { gameId } = useParams();
@@ -19,9 +20,6 @@ export default function GamePage({ gamesData }) {
     const currentYearDate = now.toISOString().split('T')[0];
     const releaseStatus = currentYearDate >= game.releaseDate;
 
-    const getCover = (fileName) => {
-        return new URL(`../assets/covers/${fileName}`, import.meta.url).href;
-    };
     return (
         <div className="gamepage-container">
             <img src={getCover(game?.imageUrl)} alt={game?.title} />

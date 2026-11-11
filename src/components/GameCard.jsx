@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
+import { getCover } from '../utils/getCover';
 
 export default function GameCard({ game }) {
-
-    const getCover = (fileName) => {
-        return new URL(`../assets/covers/${fileName}`, import.meta.url).href;
-    };
     return (
         <article className="card user-select-none">
             <Link to={`/games/${game.id}`}>
